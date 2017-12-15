@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import { Route } from 'react-router-dom';
+import { Grid } from 'react-bootstrap';
+import Users from './users/Users';
+import NewTask from './todos/NewTask';
+import Navbar from './utils/Navbar';
+import Todos from './todos/Todos';
+import Home from './Home';
 import '../styles/App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Navbar/>
+        <Grid>
+          <Route exact path="/" render={Home}/>
+          <Route path="/team-members/:userId/todos" component={Todos}/>
+          <Route exact path="/team-members/" component={Users}/>
+          <Route path="/new-task" component={NewTask}/>
+        </Grid>
       </div>
     );
   }
